@@ -10,19 +10,24 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
-	void FixedUpdate() {
-		Vector3 vel = transform.forward * speed;
-		GetComponent<Rigidbody>().velocity = vel;		
-		if (Input.GetKey (left)) {
-			transform.Rotate (new Vector3(0,-90,0));
+	void LateUpdate() {
+		transform.position += transform.forward * Time.deltaTime * speed;			
+		if (Input.GetKeyUp (left)) {
+			transform.Rotate(0,-90,0);
+			//Debug.Log("left");
+			//Quaternion originalRot = transform.rotation;
+			//transform.rotation = originalRot * Quaternion.AngleAxis (90, Vector3.right);
 		} 
-		if (Input.GetKey (right)) {
-			transform.Rotate (new Vector3(0,90,0));
+		if (Input.GetKeyUp (right)) {
+			transform.Rotate(0,90,0);
+			//Debug.Log("right");
+			//Quaternion originalRot = transform.rotation;
+			//transform.rotation = originalRot * Quaternion.AngleAxis (90, Vector3.right);
 		}
-		if (Input.GetKey (jump)) {
+		if (Input.GetKeyUp (jump)) {
 			GetComponent<Rigidbody>().AddForce(new Vector3(0f, jumpForce, 0f));
 		}
 	}

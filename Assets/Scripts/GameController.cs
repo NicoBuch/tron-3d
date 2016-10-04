@@ -4,7 +4,9 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
     public KeyCode pause;
-    public Text pauseText;
+    public Text finishedText;
+    public GameObject player1;
+    public GameObject player2;
 
     private bool paused = false;
 
@@ -30,15 +32,21 @@ public class GameController : MonoBehaviour {
         return paused;
     }
 
-    void setText()
+    public void finished(GameObject player)
     {
-        if (paused)
+        Time.timeScale = 0;
+        if (player.tag == "Player1")
         {
-            pauseText.text = "PAUSED";
+            setText("PLAYER 2 WINS!");
         }
         else
         {
-            pauseText.text = "";
+            setText("PLAYER 1 WINS!");
         }
+    }
+
+    void setText(string text)
+    {
+        finishedText.text = text;
     }
 }

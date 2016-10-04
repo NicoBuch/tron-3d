@@ -6,6 +6,7 @@ public class LightCycleTrail : MonoBehaviour
     public float time = 200;
     public int rate = 10;
     public GameObject player;
+    public GameController gameController;
 
     private Vector3[] arv3;
     private int head;
@@ -43,7 +44,7 @@ public class LightCycleTrail : MonoBehaviour
     {
         if (Hit())
         {
-            Debug.Log("Hit!");
+            gameController.finished(player);
         }
     }
 

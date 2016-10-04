@@ -44,7 +44,7 @@ public class LightCycleTrail : MonoBehaviour
     {
         if (Hit())
         {
-            gameController.finished(player);
+            gameController.finished(hit.collider.gameObject);
         }
     }
 

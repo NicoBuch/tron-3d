@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 
     private bool onGround = true;
 	
-	void LateUpdate() {
+	void Update() {
         if (!gameController.isPaused())
         {
             transform.position += (-1) * transform.right * Time.deltaTime * speed;

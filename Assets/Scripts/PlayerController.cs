@@ -6,30 +6,33 @@ public class PlayerController : MonoBehaviour {
 	public KeyCode left;
 	public KeyCode jump;
 	public float jumpForce;
-	public float turnSpeed;
 	public float speed;
-	// Use this for initialization
-	void Start () {
+    public PauseMenu pauseMenu;
 
-	}
+    private bool onGround = true;
 	
 	void LateUpdate() {
-		transform.position += transform.forward * Time.deltaTime * speed;			
-		if (Input.GetKeyUp (left)) {
-			transform.Rotate(0,-90,0);
-			//Debug.Log("left");
-			//Quaternion originalRot = transform.rotation;
-			//transform.rotation = originalRot * Quaternion.AngleAxis (90, Vector3.right);
-		} 
-		if (Input.GetKeyUp (right)) {
-			transform.Rotate(0,90,0);
-			//Debug.Log("right");
-			//Quaternion originalRot = transform.rotation;
-			//transform.rotation = originalRot * Quaternion.AngleAxis (90, Vector3.right);
-		}
-		if (Input.GetKeyUp (jump)) {
-			GetComponent<Rigidbody>().AddForce(new Vector3(0f, jumpForce, 0f));
-		}
+        if (!pauseMenu.isPaused())
+        {
+            transform.position += (-1) * transform.right * Time.deltaTime * speed;
+            if (Input.GetKeyUp(left))
+            {
+                transform.Rotate(0, -90, 0);
+            }
+            if (Input.GetKeyUp(right))
+            {
+                transform.Rotate(0, 90, 0);
+            }
+            if (Input.GetKeyUp(jump) && onGround)
+            {
+                GetComponent<Rigidbody>().AddForce(new Vector3(0f, jumpForce, 0f));
+                onGround = false;
+            }
+        }
 	}
 
+    void OnCollisionEnter(Collision coll)
+    {
+        onGround = true;
+    }
 }

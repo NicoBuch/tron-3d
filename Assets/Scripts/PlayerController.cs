@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour {
                 GetComponent<Rigidbody>().AddForce(new Vector3(0f, jumpForce, 0f));
                 onGround = false;
             }
+            if (transform.position.y < 0)
+            {
+                gameController.finished(gameObject);
+            }
         }
 	}
 

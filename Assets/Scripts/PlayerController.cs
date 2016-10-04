@@ -7,19 +7,19 @@ public class PlayerController : MonoBehaviour {
 	public KeyCode jump;
 	public float jumpForce;
 	public float speed;
-    public PauseMenu pauseMenu;
+    public GameController gameController;
 
     private bool onGround = true;
 	
 	void LateUpdate() {
-        if (!pauseMenu.isPaused())
+        if (!gameController.isPaused())
         {
             transform.position += (-1) * transform.right * Time.deltaTime * speed;
-            if (Input.GetKeyUp(left))
+            if (Input.GetKeyUp(left) && onGround)
             {
                 transform.Rotate(0, -90, 0);
             }
-            if (Input.GetKeyUp(right))
+            if (Input.GetKeyUp(right) && onGround)
             {
                 transform.Rotate(0, 90, 0);
             }

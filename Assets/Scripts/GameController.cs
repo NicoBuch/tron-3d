@@ -46,7 +46,6 @@ public class GameController : MonoBehaviour
 
     public void finished(GameObject player)
     {
-        timer.Reset();
         timer.Start();
         gameOver = true;
         Time.timeScale = 0.2f;

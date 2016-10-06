@@ -7,4 +7,14 @@ public class PlayButton : MonoBehaviour {
     {
         Application.LoadLevel("main");
     }
+
+    public void instructions()
+    {
+        Application.LoadLevel("instructions");
+    }
+
+    public void backToMenu()
+    {
+        Application.LoadLevel("menu");
+    }
 }
